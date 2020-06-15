@@ -10,7 +10,7 @@ def data_collect_jsl():
     """
     :return: 高pe及roe数据
     """
-    driver = webdriver.Chrome(executable_path='Data/Source/chromedriver.exe')
+    driver = webdriver.Chrome(executable_path='src/Source/chromedriver.exe')
     driver.get('https://www.jisilu.cn/data/stock/dividend_rate/#cn')
     time.sleep(0.5)
 
@@ -36,7 +36,7 @@ def data_alltogether_wande():
              '收盘价', '成交量']
     w.start()
 
-    with open('Data/Source/wande.txt', 'r')as f:
+    with open('src/Source/wande.txt', 'r')as f:
         l = f.readlines()
     while '\n' in l:
         l.remove('\n')

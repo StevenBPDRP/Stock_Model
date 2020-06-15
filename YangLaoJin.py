@@ -8,7 +8,7 @@ def YLJ_list():
     """
     :return: list of yanglaojin
     """
-    driver = webdriver.Chrome(executable_path='Data/Source/chromedriver.exe')
+    driver = webdriver.Chrome(executable_path='src/Source/chromedriver.exe')
     driver.get('http://data.jrj.com.cn/gudong/yljcg.shtml')
     time.sleep(1)
     data = driver.find_element_by_xpath('//*[@id="table-1"]').text
@@ -38,7 +38,7 @@ def YLJ_csv(data):
         for i in range(int(len(data) / 10)):
             w.writerow(data[10 + i * 10:20 + i * 10])
     f.close()
-    x = pd.read_csv('Data/Source/养老金.csv', dtype={1: str})
+    x = pd.read_csv('src/Source/养老金.csv', dtype={1: str})
     l = list(x['股票代码'])
     for i in range(len(x)):
         if l[i][:2] == '00' or l[i][:2] == '30':
@@ -48,4 +48,4 @@ def YLJ_csv(data):
     x['股票代码'] = l
     x = x[['股票代码', '股票名称', '公告日期', '养老金账户名', '持股数(万股)', '占总股本比例', '占流通股本比例']]
     x = x.drop_duplicates()
-    x.to_excel('Data/Source/养老金.xlsx', encoding='utf-8-sig', index=False)
+    x.to_excel('src/Source/养老金.xlsx', encoding='utf-8-sig', index=False)
